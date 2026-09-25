@@ -73,8 +73,10 @@ type Game struct {
 	localMenu []string // [20d6] room specific actions, [1..8]
 	// moves is array[1..6] in the original, but EnterRoom clears 8
 	// entries, overflowing into a2259. The port keeps them separate.
-	moves [9]move     // [21a3]
-	curse [151]string // [2259] words of the curse being composed, string[20]
+	moves [9]move // [21a3]
+	// curse is array[1..150]; SaySomething also reads curse[151], which in the
+	// original is never-written (zero) memory after the array, i.e. "".
+	curse [152]string // [2259] words of the curse being composed, string[20]
 
 	loaded2  int // [2ebc]
 	flagD    int // [2ebd]
