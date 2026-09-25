@@ -1,0 +1,204 @@
+*attack1
+- Rohadt k”lke! - ord¡tja, ‚s
+akkora pofont ad, hogy a fal
+adja a m sikat.
+***
+0
+5
+30
+*attack2
+Az ”tlet nem a legjobb, mert addig
+m‚g ok‚, hogy t”k”n akarod r£gni,
+de hogy r ngatod fel a sz‚k‚r”l?
+***
+0
+0
+0
+*attack3
+Van itt hasizom! Annyi legal bbis,
+hogy lepattanjon r¢la a l bad.
+Felugrik, ‚s a karodn l fogva kifel‚
+r ngat a teremb”l. Feltehet”leg
+£tic‚lotok az igazgat¢i iroda.
+***
+0
+5
+0
+*attack4
+Felugrasz, ‚s mutat¢- valamint k”z‚ps”
+ujjaid alkalmaz s val er”teljes
+nyom st gyakorolsz a szemgoly¢ira,
+majd - ha m r nekikezdt‚l a ver‚snek -
+sz‚tr£god a t”keit is. Brav¢,
+elint‚zted. A lezuhan¢ holttest el”l
+alig tudsz f‚lreugrani.
+***
+5
+0
+0
+*attack5
+Nem tudod lel”kni a f”ldre, hogy ezt
+megtedd.
+***
+0
+0
+0
+*attack6
+- Menj‚l m r a p... m shov ! -
+finomkodik, mert h t ugye tan r nem
+besz‚lhet cs£ny n, ‚s h tral”k. A
+kezeid  t sem ‚rt‚k a nyak t.
+***
+0
+5
+0
+*attack7
+Odal‚psz hozz , ‚s tark¢n bucizod.
+Err”l ennyit.
+***
+5
+0
+0
+*attack8
+Felr ntan d a sz‚k‚r”l, de csak az
+ing‚t sikerl elszak¡tanod. Akkora
+pofont kapsz, hogy percekig joj¢znak
+t”le a szemeid.
+***
+0
+5
+40
+*attack9
+Ler£god a sz‚k‚r”l. Felugrik, ‚s m ris
+egy nagy pofonnal gazdagabb vagy.
+***
+0
+5
+0
+*attack10
+št”d £gy csap le, mint a vihar, csak
+a g”zcs¡kot l tni, ahogyan a leveg”
+p ratartalma lecsap¢dik ‚s £jra
+elp rolog a nyomvonal n. Sajnos
+azonban Sz‚chenyi elhajol, ‚s a g‚pe
+monitor t tal lod telibe. Robban s,
+fst, szikr k. Amint a fst eloszlik,
+l tod, hogy a tan r holtan fekszik:
+a k‚perny” egyik vastag vegszil nkja
+bele llt a fej‚be.
+***
+5
+0
+0
+*talk
+- J¢ napot, tan r £r!
+- Nem kellene ¢r n lenned?
+***
+0
+0
+0
+*askmoney1
+- Nem ittunk pertut, £gy eml‚kszem!
+***
+0
+1
+0
+*askmoney2
+- Nem ittunk pertut, legal bbis nem
+  eml‚kszem!
+***
+0
+1
+0
+*askmoney3
+- Nem ‚rzed magad nagyon szemtelennek?
+***
+0
+1
+0
+*askmoney4
+- Akarsz egy nagy pofont?!
+***
+0
+3
+0
+*askmoney5
+- Kevesebbet kellene t‚v‚t n‚zned.
+  J tssz l ink bb a Doom-mal, az
+  seg¡ti az ifj£s g lelki fejl”d‚s‚t.
+***
+0
+0
+0
+*askmoney6
+Felpattan, ‚s lezavar egy nyaklevest.
+- Mit k‚pzelsz, kivel besz‚lsz?!
+***
+0
+5
+30
+*askmoney7
+Fejbek£r egy lemezdobozzal.
+- Mi van, fiam?!
+***
+0
+5
+40
+*askmoney8
+- Kell egy nyakleves? Takarodj ki a
+  teremb”l!
+***
+0
+5
+0
+*saysomething
+Egy id” ut n m r nem is sz molod,
+h nyadik nyakleves z£dul a fleid
+k”z‚.
+***
+0
+5
+30
+*spit
+Robajt hallasz, ‚s hirtelen kimegy a
+vil g¡t s. Nem eg‚szen ‚rted, de azt n
+r j”ssz, hogy ‚leted legnagyobb
+pofonj t gyjt”tted be.
+***
+0
+5
+40
+*fuck
+Am¡g a nadr gj val b¡bel”dsz, elkap,
+‚s  tdob a v lla felett. Egy asztal
+sz‚l‚re zuhansz, ‚s elt”rik a
+gerinced. Els”t‚tedik el”tted a vil g,
+‚s az utols¢, amit l tsz, egy GAME
+OVER felirat.
+***
+0
+5
+100
+*gasattack
+- Tan r £r!
+- Tess‚k.
+Amint odafordul, r f£jsz. Nagyot
+tsszent.
+- Most vicces volt l, fiam?
+- De tan r £r, ez m‚rges g z!
+- Ja... AAARGH...
+***
+5
+0
+0
+*chainsaw
+Szemmagass gban lev god a feje
+tetej‚t. J‚, ennek agya is van?...
+***
+5
+0
+0
+-----
+
+ *** A SZ™VEGEK PISZKLSBOL FAKADO ADATVESZTESGRT
+     A CG NEM FELEL!

@@ -1,0 +1,200 @@
+*attack1
+Darabokra t”rik a prot‚zise. A
+manyagdarabokat k”pk”dve ¡gy motyog:
+- Eszek a mai fiatalok!
+***
+4
+5
+0
+*attack2
+Csattanva teszed a semmivel egyenl”v‚
+a legnemesebb szerv‚t, de hasztalan.
+Az elsz radt b”rfoszl nyok, amik a
+l ba k”z‚t ‚kes¡tett‚k, m r r‚g¢ta
+teljesen ‚rz‚ketlenek voltak.
+***
+0
+5
+0
+*attack3
+Felr£god a v‚n buzit, hogy elterl a
+k”v”n.
+***
+5
+0
+0
+*attack4
+Kezed lecs£szik a szemveg‚r”l.
+- Fiatalember, ha nem hagyja abba
+  a szemtelenked‚st, egy akkora
+  pofont kaphat t”lem...
+***
+0
+5
+0
+*attack5
+Lebor¡tod a sz‚k‚r”l, ‚s kicsit
+megropogtatod az elmeszesedett
+csontjait. Sajnos nem sok marad
+egyben, de h t ez a korral j r, vagy
+nem?
+***
+5
+0
+0
+*attack6
+Sz‚p fokozatosan r¢zsasz¡n, v”r”s,
+majd psp”klila  rnyalatot ”lt.
+V‚gl elernyed: mehet a kript ba.
+***
+5
+0
+0
+*attack7
+Mehet a kript ba.
+***
+5
+0
+0
+*attack8
+H¢nod al  szor¡tod, ‚s nekirohansz
+vele a falnak. Reccsen‚st hallasz.
+Nos, megint a fal volt az er”sebb.
+***
+5
+0
+0
+*attack9
+Kir£god al¢la a l bait. Recseg-ropog,
+ahogy f”ldet ‚r. Elt”rt n‚h ny
+csontja. Kb. 132.
+***
+5
+0
+0
+*attack10
+Pog cs v  lap¡tott fejjel borul a
+leves‚be.
+***
+5
+0
+0
+*talk
+- J¢ ‚tv gyat, tan r £r.
+- K”sz”n”m, fiatalember.
+***
+0
+0
+0
+*askmoney1
+- Ezek a mai fiatalok... - motyogja.
+***
+0
+0
+0
+*askmoney2
+- Ezek a mai fiatalok - motyogja.
+***
+0
+0
+0
+*askmoney3
+- Pimasz k”lke! Bezzeg az ‚n
+  id”mben...
+***
+0
+5
+0
+*askmoney4
+- Pimasz k”lke! Csak lenn‚k n‚h ny
+  ‚vvel fiatalabb...
+***
+0
+5
+0
+*askmoney5
+- Ezek a mai fiatalok! Csak a vide¢,
+  krimik. Meg is l tszik... - motyogja
+  mag ban.
+***
+0
+1
+0
+*askmoney6
+- Szemtelen, pimasz gyerek! - Felkapja
+a botj t az asztal mell”l, ‚s v‚gigv g
+rajtad vele.
+***
+0
+5
+50
+*askmoney7
+- Elszemtelenedtek ezek a mai
+  fiatalok. Egy j¢ n dp lc s nevel‚s,
+  mint r‚gen, az j¢t tenne nekik...
+ - motyogja mag ban.
+***
+0
+2
+0
+*askmoney8
+- Elszemtelenedtek ezek a mai
+  fiatalok. Egy j¢ n dp lc s nevel‚s,
+  mint r‚gen, az j¢t tenne nekik...
+ - motyogja mag ban.
+***
+0
+2
+0
+*saysomething
+- Fiatalember, mit k‚pzel, hol
+  vagyunk? Az erd”ben!? Bezzeg az ‚n
+  id”mben...
+***
+0
+2
+0
+*spit
+- Diszn¢s g, mit meg nem engednek
+  maguknak ezek a mai fiatalok...
+A szem‚t t”r”lgetve elmond m‚g n‚h ny
+hasonl¢ fr zist.
+***
+0
+0
+0
+*fuck
+- Na, gyere, ”reg, bulizunk egyet,
+  miel”tt m‚g a kript ba kerln‚l!
+Felr ntod a sz‚k‚r”l, r hasaltatod
+az asztalra (bele a spen¢tba),
+leh£zod a nadr gj t, ‚s megkef‚led,
+hogy csak £gy recseg! Amikor kih£zod,
+t‚nyleg megy a kript ba...
+***
+5
+0
+0
+*gasattack
+F£jsz, ‚s h tral‚psz. lvezettel
+figyeled v‚gig, mit csin l. Fuldoklik,
+feje b¡borv”r”s. Szemei kidllednek.
+Nyelve elfeh‚redve bukik ki a
+sz j b¢l, amint elpattannak az els”
+erek az agy ban. Majd arccal beleborul
+a leves‚be, ‚s elernyed.
+***
+5
+0
+0
+*chainsaw
+Sz‚thasogatod a v‚n buzit, hogy csak
+£gy fr”cs”g.
+***
+5
+0
+0
+-----
+
+ *** A SZ™VEGEK PISZKLSBOL FAKADO ADATVESZTESGRT
+     A CG NEM FELEL!

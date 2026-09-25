@@ -1,0 +1,187 @@
+*attack1
+Kiv‚di az t‚st, elkapja a kezedet,
+‚s megcsavarva elt”ri.
+***
+0
+5
+80
+*attack2
+Neh‚z lesz, mivel ‚ppen a padban l.
+***
+0
+0
+0
+*attack3
+A sz‚kkel egytt esik h tra, ‚s
+”klendezik.
+***
+3
+5
+0
+*attack4
+Belekapsz a szem‚be, de nagyobb
+sikerre nem viszed. ™ viszont ann l
+ink bb: j¢l t”k”n r£g.
+- Menj a faszomba, te vesek‚regr k!
+***
+0
+5
+80
+*attack5
+Lel”k”d a sz‚k‚r”l, ‚s igyekszel
+r l‚pni. Sajnos nem megy: k¡gy¢z¢
+mozg ssal minduntalan kisiklik a
+l bad al¢l, majd felugrik.
+- Na gyere, te abortuszmarad‚k!
+***
+0
+5
+0
+*attack6
+Fogod a tork t, ‚s szor¡tod. K”zben
+arra leszel figyelmes, hogy egyre
+nehezebben kapsz leveg”t. Ja, persze.
+szre sem vetted, hogy ” is fojtogat
+t‚ged. K”z”s megegyez‚ssel elengeditek
+egym s tork t, miel”tt m‚g mind a
+ketten megfulladn tok.
+***
+1
+5
+30
+*attack7
+PIFF!
+- Auuu...
+***
+4
+5
+0
+*attack8
+Kir ntja mag t a kezeidb”l, ‚s be¡g‚r
+egy hatalmas pofont.
+***
+0
+5
+0
+*attack9
+Ha ezt egy futballb¡r¢ l tta volna,
+”r”kre eltilt a p ly ra l‚p‚st”l!
+Laki egy tripla szalt¢val bszke
+¡vben repl el, de a t bl nak
+csap¢dik, ‚s ez megakasztja
+lendlet‚t. Egy nem t£l m‚lt¢s gteljes
+landol s k”vetkezik, minek sor n
+ripityomra t”ri a tan ri sz‚ket.
+***
+3
+5
+0
+*attack10
+Megsuhintod az t”t, de - legnagyobb
+meglepet‚sedre - nem tal lod el.
+Aljas m¢don f‚lrehajolt!
+***
+0
+5
+0
+*talk
+- Hell¢, Laki.
+- Mit csin lsz itt, a mi termnkben?
+***
+0
+0
+0
+*askmoney1
+- Bocs, de nincs.
+***
+0
+0
+0
+*askmoney2
+- Sajnos nem adhatok, mert nincs.
+***
+0
+0
+0
+*askmoney3
+- Bocs, de hol l tt l te gazdag
+  rockert?
+***
+0
+0
+0
+*askmoney4
+- K”cs”g a kurva any d.
+***
+0
+1
+0
+*askmoney5
+- Maradj l m r, bazmeg, nincs egy
+  vasam se.
+***
+0
+0
+0
+*askmoney6
+- Kussolj l m r, te fasszop¢
+  birkavez‚r!
+***
+0
+1
+0
+*askmoney7
+- Mi‚rt, mit teszel, megeszel?
+***
+0
+1
+0
+*askmoney8
+- Ha! Ha! Ha!
+***
+0
+1
+0
+*saysomething
+- Te ugatsz, aki £gy n‚z ki, mint egy
+  lefosott kilom‚terk”?!
+***
+0
+4
+0
+*spit
+- F£j, bazmeg... Orrbaver, azut n a
+  csul dat bel‚d keni.
+***
+0
+5
+30
+*fuck
+- Bazmeg, ez buzi!! - Veszettl
+  elkezd ugr lni. Olyan ‚rz‚sed lesz,
+  mintha rode¢n lenn‚l. A dolog ¡gy
+  nem sikerl, bossz£san sz llsz le a
+  h t r¢l.
+***
+0
+5
+0
+*gasattack
+- Nesze, te rohadt met los! - ki ltod,
+‚s elbor¡tod harci g zzal. Ennyit
+Lakir¢l.
+***
+5
+0
+0
+*chainsaw
+Der‚kban kett‚szeled, ‚s lek”p”d
+mindk‚t holttest‚t.
+***
+5
+0
+0
+-----
+
+ *** A SZ™VEGEK PISZKLSBOL FAKADO ADATVESZTESGRT
+     A CG NEM FELEL!
