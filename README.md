@@ -62,6 +62,27 @@ van rajta Go: `CGO_ENABLED=0 go build -o suli ./cmd/suli`.
 Futtatáshoz asztali környezet (X11 vagy Wayland) és működő OpenGL-driver kell;
 a friss Raspberry Pi OS-en ez alapból megvan.
 
+### Böngésző (WebAssembly)
+
+A játék böngészőben is fut, telepítés nélkül. A `web` mappában van hozzá egy
+oldal: a játékképernyő alatt érintős gombok (nyilak, Enter, Esc, Szóköz,
+PgUp/PgDn, Del, Alt-S), így telefonon is játszható.
+
+```sh
+GOOS=js GOARCH=wasm go build -trimpath -ldflags "-s -w" -o web/suli.wasm ./cmd/suli
+cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" web/
+python3 -m http.server -d web 8000   # majd: http://localhost:8000
+```
+
+A `web` mappa tartalma bármilyen statikus tárhelyre feltölthető (pl. GitHub
+Pages). `file://`-ból megnyitva nem működik, webszerver kell hozzá. A
+`suli.wasm` kb. 15 MB, tömörítve kb. 3,5 MB; az oldal gzippel tömörített
+`suli.wasm`-ot is elfogad.
+
+A mentés (Alt-S) böngészőben a böngésző saját tárolójába (localStorage) kerül,
+a „Mentés betöltése” gomb onnan tölti vissza. Az asztali változatok továbbra
+is fájlba mentenek.
+
 ### Megjegyzések
 
 A macOS-bináris nincs aláírva, ezért első indításkor a Gatekeeper blokkolhatja.
@@ -80,6 +101,7 @@ fejlécfájlok (Arch: `libx11 libxrandr libxcursor libxinerama libxi mesa`).
 | `internal/charset` | Az eredeti kódlap (CP437 + CWI-2 ékezetek) ↔ UTF-8 |
 | `internal/game` | A játéklogika. A `*_gen.go` fájlok a gépi kódból fordított Go kód, a többi kézzel írt |
 | `assets` | Az eredeti adatfájlok és a font (beágyazva) |
+| `web` | Böngészős változat: az oldal, ami a WebAssembly-buildet betölti, érintős gombokkal |
 
 A játéklogika szándékosan követi az eredeti Turbo Pascal program szerkezetét,
 a furcsaságaival együtt.

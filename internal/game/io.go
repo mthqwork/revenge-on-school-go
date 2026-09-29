@@ -2,7 +2,6 @@ package game
 
 import (
 	"bytes"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -18,7 +17,7 @@ func isSaveName(name string) bool {
 // readFile resolves a DOS file name of the original program.
 func (g *Game) readFile(name string) ([]byte, error) {
 	if isSaveName(name) {
-		return os.ReadFile(g.SavePath)
+		return loadSave(g.SavePath)
 	}
 	return assets.ReadData(name)
 }
@@ -54,10 +53,8 @@ func (g *Game) CloseText(f *dos.TextFile) {
 	data := f.W.Bytes()
 	f.W = nil
 	if isSaveName(f.Name) {
-		if err := os.MkdirAll(filepath.Dir(g.SavePath), 0o755); err == nil {
-			if err := os.WriteFile(g.SavePath, data, 0o644); err != nil {
-				g.ioResult = 5
-			}
+		if err := storeSave(g.SavePath, data); err != nil {
+			g.ioResult = 5
 		}
 	}
 }

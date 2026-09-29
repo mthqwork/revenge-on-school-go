@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revenge on School (game frame)</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+  canvas { image-rendering: pixelated; image-rendering: crisp-edges; }
+</style>
+<script src="wasm_exec.js"></script>
+</head>
+<body>
+<script>
+// Game frame: loads the Go/Ebitengine WebAssembly build and relays events to the parent page.
+(function () {
+  const post = (msg) => { try { parent.postMessage(Object.assign({ suli: true }, msg), "*"); } catch (e) {} };
+
+  // Called from Go (save_js.go) after Alt-S wrote the save game to localStorage.
+  window.onSuliSaved = () => post({ type: "saved" });
+
+  // Synthetic keyboard input from the parent page (on-screen keys, forwarded keystrokes).
+  window.addEventListener("message", (ev) => {
+    const d = ev.data;
+    if (!d || !d.suliKey) return;
+    const canvas = document.querySelector("canvas");
+    if (!canvas) return;
+    canvas.dispatchEvent(new KeyboardEvent(d.down ? "keydown" : "keyup", {
+      key: d.key, code: d.code, altKey: !!d.alt, bubbles: true, cancelable: true
+    }));
+  });
+
+  async function fetchWasm() {
+    const res = await fetch("suli.wasm");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const total = Number(res.headers.get("content-length")) || 0;
+    let loaded = 0;
+    const counter = new TransformStream({
+      transform(chunk, ctl) {
+        loaded += chunk.byteLength;
+        if (total) post({ type: "progress", value: Math.min(1, loaded / total) });
+        ctl.enqueue(chunk);
+      }
+    });
+    const raw = await new Response(res.body.pipeThrough(counter)).arrayBuffer();
+    const head = new Uint8Array(raw, 0, 2);
+    // Accept both a plain suli.wasm and a gzip-compressed one (inflated here).
+    if (head[0] !== 0x1f || head[1] !== 0x8b) return raw;
+    const stream = new Blob([raw]).stream().pipeThrough(new DecompressionStream("gzip"));
+    return new Response(stream).arrayBuffer();
+  }
+
+  async function start() {
+    const go = new Go();
+    go.argv = location.hash === "#load" ? ["suli", "loadgame"] : ["suli"];
+    const bytes = await fetchWasm();
+    const { instance } = await WebAssembly.instantiate(bytes, go.importObject);
+    post({ type: "running" });
+    await go.run(instance);
+    post({ type: "exit" });
+  }
+
+  start().catch((err) => post({ type: "error", message: String(err && err.message || err) }));
+})();
+</script>
+</body>
+</html>

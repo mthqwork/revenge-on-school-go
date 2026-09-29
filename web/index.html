@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Revenge on School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+  /* Layout: one screen. Header strip, the 640x400 game screen as the hero, a keycap pad beneath it. Single dark look (a school PC lab after hours). */
+  :root {
+    --bg: #0e1120;          /* room */
+    --panel: #171b31;       /* monitor bezel */
+    --line: #2a3057;
+    --fg: #d5d8e8;
+    --muted: #8a90b3;
+    --accent: #f2c14e;      /* VGA yellow */
+    --cap: #d8d4c7;         /* keycap plastic */
+    --cap-edge: #a7a293;
+    --cap-ink: #23242b;
+    --display: "VT323", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: dark;
+  }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px;
+    padding-inline: 16px; padding-block: 12px; box-sizing: border-box;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .wrap { width: 100%; max-width: min(1280px, calc((100vh - 250px) * 1.6)); min-width: 0;
+          display: flex; flex-direction: column; gap: 12px; }
+  @media (max-width: 700px) {
+    .wrap { max-width: 100%; }
+    .by { display: block; margin: 6px 0 0; }
+    .stage { border-width: 6px; }
+  }
+
+  header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+  h1 { margin: 0; font: 400 2.1rem/1 var(--display); color: var(--accent); letter-spacing: .02em; text-wrap: balance; }
+  .by { font: 400 1.15rem/1 var(--display); color: var(--muted); margin-left: 10px; letter-spacing: .04em; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    font: 600 .85rem/1 var(--body); color: var(--fg); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 12px; cursor: pointer;
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn:focus-visible, .cap:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn[disabled] { opacity: .45; cursor: default; }
+
+  .stage {
+    position: relative; width: 100%; aspect-ratio: 16 / 10; max-width: 100%;
+    background: #000; border: 10px solid var(--panel); border-radius: 6px;
+    box-shadow: 0 0 0 1px var(--line), 0 18px 40px rgba(0,0,0,.45);
+    box-sizing: border-box;
+  }
+  .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #000; }
+  .stage:fullscreen { border: 0; border-radius: 0; background: #000; display: flex; align-items: center; justify-content: center; }
+  .stage:fullscreen iframe { position: static; width: min(100vw, 160vh); height: min(62.5vw, 100vh); }
+
+  .overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; background: #000; color: var(--fg); text-align: center; padding: 16px;
+    font: 400 1.5rem/1.2 var(--display);
+  }
+  .bar { width: min(320px, 70%); height: 12px; border: 1px solid var(--muted); padding: 2px; box-sizing: border-box; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); }
+  .overlay .btn { font-size: .95rem; }
+  .overlay small { font: 400 .8rem/1.4 var(--body); color: var(--muted); max-width: 40ch; }
+
+  .toast {
+    position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+    background: var(--accent); color: var(--cap-ink); font: 400 1.3rem/1 var(--display);
+    padding: 6px 12px; border-radius: 3px; pointer-events: none; white-space: nowrap; transition: opacity .3s;
+  }
+
+  .pad { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 14px 22px; }
+  .cluster { display: grid; gap: 6px; }
+  .arrows { grid-template-columns: repeat(3, 60px); }
+  .row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .cap {
+    min-width: 60px; height: 44px; padding: 0 8px; box-sizing: border-box;
+    background: var(--cap); color: var(--cap-ink); border: 1px solid var(--cap-edge);
+    border-bottom-width: 4px; border-radius: 5px; cursor: pointer;
+    font: 400 1.25rem/1 var(--display); letter-spacing: .03em;
+    touch-action: manipulation; user-select: none; -webkit-user-select: none;
+  }
+  .cap.down, .cap:active { border-bottom-width: 1px; transform: translateY(3px); }
+  .cap.wide { min-width: 120px; }
+  .cap.save { background: var(--accent); border-color: #b88f2c; }
+  .spacer { visibility: hidden; }
+
+  .help { margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.5; text-align: center; }
+  .help kbd { font: 400 1rem/1 var(--display); color: var(--fg); border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; }
+  @media (prefers-reduced-motion: reduce) { .toast { transition: none; } .cap.down, .cap:active { transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Revenge on School <span class="by">Tomcat Software, 1994–95</span></h1>
+    <div class="actions">
+      <button class="btn" id="btn-new" type="button">Új játék</button>
+      <button class="btn" id="btn-load" type="button">Mentés betöltése</button>
+      <button class="btn" id="btn-full" type="button">Teljes képernyő</button>
+    </div>
+  </header>
+
+  <div class="stage" id="stage">
+    <iframe id="game" title="Revenge on School játék" allow="fullscreen"></iframe>
+    <div class="overlay" id="overlay">
+      <div id="ov-text">Betöltés...</div>
+      <div class="bar" id="ov-bar"><i id="ov-fill"></i></div>
+      <button class="btn" id="ov-btn" type="button" hidden>Új játék</button>
+      <small id="ov-note"></small>
+    </div>
+    <div class="toast" id="toast" style="opacity:0">Játékállás elmentve</div>
+  </div>
+
+  <div class="pad" id="pad" aria-label="Képernyő-billentyűzet">
+    <div class="cluster arrows">
+      <button class="cap" type="button" data-code="PageUp" data-key="PageUp" aria-label="Page Up">PgUp</button>
+      <button class="cap" type="button" data-code="ArrowUp" data-key="ArrowUp" aria-label="Fel">↑</button>
+      <button class="cap" type="button" data-code="PageDown" data-key="PageDown" aria-label="Page Down">PgDn</button>
+      <button class="cap" type="button" data-code="ArrowLeft" data-key="ArrowLeft" aria-label="Balra">←</button>
+      <button class="cap" type="button" data-code="ArrowDown" data-key="ArrowDown" aria-label="Le">↓</button>
+      <button class="cap" type="button" data-code="ArrowRight" data-key="ArrowRight" aria-label="Jobbra">→</button>
+    </div>
+    <div class="cluster">
+      <div class="row">
+        <button class="cap" type="button" data-code="Escape" data-key="Escape">Esc</button>
+        <button class="cap" type="button" data-code="Delete" data-key="Delete">Del</button>
+        <button class="cap save" type="button" id="cap-save" aria-label="Mentés (Alt-S)">Alt-S</button>
+      </div>
+      <div class="row">
+        <button class="cap wide" type="button" data-code="Space" data-key=" ">Szóköz</button>
+        <button class="cap wide" type="button" data-code="Enter" data-key="Enter">Enter ↵</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="help">
+    Billentyűzettel: <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd> <kbd>Szóköz</kbd> <kbd>PgUp</kbd>/<kbd>PgDn</kbd> <kbd>Del</kbd>, mentés <kbd>Alt-S</kbd>.
+    A mentés ebben a böngészőben marad.
+  </p>
+</div>
+
+<script>
+// Host page: wraps the game frame, provides on-screen keys, fullscreen, restart and load controls.
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const frame = $("game"), stage = $("stage"), overlay = $("overlay");
+  const SAVE_KEY = "revenge-on-school/savegame.tsi";
+  let running = false, toastTimer = 0;
+
+  function hasSave() {
+    try { return !!localStorage.getItem(SAVE_KEY); } catch (e) { return false; }
+  }
+  function refreshLoadButton() { $("btn-load").disabled = !hasSave(); }
+
+  function showOverlay(text, opts) {
+    opts = opts || {};
+    $("ov-text").textContent = text;
+    $("ov-bar").hidden = !opts.bar;
+    $("ov-btn").hidden = !opts.button;
+    $("ov-note").hidden = !opts.note;
+    $("ov-note").textContent = opts.note || "";
+    overlay.hidden = false;
+  }
+
+  // The hash must stay at the end of the URL for the frame to read it.
+  function boot(load) {
+    running = false;
+    $("ov-fill").style.width = "0";
+    showOverlay("Betöltés...", { bar: true });
+    frame.src = "game.html?t=" + Date.now() + (load ? "#load" : "");
+  }
+
+  function focusGame() {
+    try {
+      frame.focus();
+      const c = frame.contentDocument && frame.contentDocument.querySelector("canvas");
+      if (c) c.focus();
+    } catch (e) {}
+  }
+
+  window.addEventListener("message", (ev) => {
+    const d = ev.data;
+    if (!d || !d.suli) return;
+    if (d.type === "progress") {
+      $("ov-fill").style.width = Math.round(d.value * 100) + "%";
+    } else if (d.type === "running") {
+      running = true;
+      overlay.hidden = true;
+      focusGame();
+    } else if (d.type === "saved") {
+      refreshLoadButton();
+      const t = $("toast");
+      t.style.opacity = "1";
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.style.opacity = "0"; }, 1800);
+    } else if (d.type === "exit") {
+      running = false;
+      showOverlay("Vége a játéknak.", { button: true });
+      refreshLoadButton();
+    } else if (d.type === "error") {
+      running = false;
+      showOverlay("Nem sikerült elindítani a játékot.", { button: true, note: d.message + ". Próbáld újratölteni, vagy egy frissebb böngészővel." });
+    }
+  });
+
+  // Send one key transition into the game frame.
+  function send(code, key, down, alt) {
+    if (!frame.contentWindow) return;
+    frame.contentWindow.postMessage({ suliKey: true, code, key, down, alt: !!alt }, "*");
+  }
+
+  // On-screen keys: hold to auto-repeat, like a real keyboard.
+  const MIN_HOLD = 70;
+  document.querySelectorAll(".cap[data-code]").forEach((btn) => {
+    let pressedAt = 0, active = false;
+    const press = (e) => {
+      e.preventDefault();
+      if (active) return;
+      active = true; pressedAt = performance.now();
+      btn.classList.add("down");
+      send(btn.dataset.code, btn.dataset.key, true);
+    };
+    const release = () => {
+      if (!active) return;
+      active = false;
+      const wait = Math.max(0, MIN_HOLD - (performance.now() - pressedAt));
+      setTimeout(() => { btn.classList.remove("down"); send(btn.dataset.code, btn.dataset.key, false); }, wait);
+    };
+    btn.addEventListener("pointerdown", press);
+    btn.addEventListener("pointerup", release);
+    btn.addEventListener("pointerleave", release);
+    btn.addEventListener("pointercancel", release);
+    btn.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { press(e); setTimeout(release, 0); } });
+  });
+
+  $("cap-save").addEventListener("click", () => {
+    send("AltLeft", "Alt", true, true);
+    setTimeout(() => send("KeyS", "s", true, true), 40);
+    setTimeout(() => send("KeyS", "s", false, true), 130);
+    setTimeout(() => send("AltLeft", "Alt", false, false), 170);
+  });
+
+  // Keystrokes typed while the host page (not the game frame) has focus go to the game.
+  document.addEventListener("keydown", (e) => {
+    if (!running || e.target.closest && e.target.closest("button, input, textarea")) return;
+    if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","PageUp","PageDown","Space"].includes(e.code)) e.preventDefault();
+    send(e.code, e.key, true, e.altKey);
+  });
+  document.addEventListener("keyup", (e) => {
+    if (!running) return;
+    send(e.code, e.key, false, e.altKey);
+  });
+
+  $("btn-new").addEventListener("click", () => boot(false));
+  $("ov-btn").addEventListener("click", () => boot(false));
+  $("btn-load").addEventListener("click", () => { if (hasSave()) boot(true); });
+  $("btn-full").addEventListener("click", () => {
+    const req = stage.requestFullscreen || stage.webkitRequestFullscreen;
+    if (!req) return;
+    try {
+      const p = req.call(stage);
+      if (p && p.then) p.then(focusGame, () => {});
+    } catch (e) {}
+  });
+  stage.addEventListener("pointerdown", () => { if (running) setTimeout(focusGame, 0); });
+
+  refreshLoadButton();
+  // Start the game frame only now, so the message listener above is already in place.
+  boot(false);
+})();
+</script>
+</body>
+</html>

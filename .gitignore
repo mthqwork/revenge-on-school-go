@@ -2,3 +2,5 @@
 /suli.exe
 /suli-mac-*
 /dist/
+/web/suli.wasm
+/web/wasm_exec.js
